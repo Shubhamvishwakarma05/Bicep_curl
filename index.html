@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bicep Curl Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Bicep Curl Detection and Fitness Guide</h1>
+    </header>
+
+    <section id="info">
+        <h2>About Bicep Curls</h2>
+        <p>Bicep curls are a fundamental exercise for building arm strength. They target the bicep muscles, which are essential for everyday activities like lifting and pulling.</p>
+
+        <h3>Benefits of Bicep Curls:</h3>
+        <ul>
+            <li>Increases arm strength and muscle mass</li>
+            <li>Improves grip strength</li>
+            <li>Supports functional fitness and endurance</li>
+        </ul>
+
+        <h2>Importance of Fitness</h2>
+        <p>Maintaining a regular fitness routine improves cardiovascular health, strengthens muscles, boosts energy, and helps in maintaining a healthy weight.</p>
+    </section>
+
+    <section id="detection">
+        <h2>Bicep Curl Detection</h2>
+        <p>Click the button below to start the bicep curl detection using your webcam.</p>
+        <button onclick="startDetection()">Start Detection</button>
+        <p id="status"></p>
+    </section>
+
+    <script>
+        function startDetection() {
+            fetch('/start_detection')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('status').innerText = data;
+                })
+                .catch(error => {
+                    document.getElementById('status').innerText = 'Error starting detection';
+                });
+        }
+    </script>
+</body>
+</html>
